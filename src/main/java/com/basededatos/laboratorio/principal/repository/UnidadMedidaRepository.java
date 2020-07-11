@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface UnidadMedidaRepository extends JpaRepository<UnidadMedida, Long> {
 
+public UnidadMedida findByid(Long id);
+
 }

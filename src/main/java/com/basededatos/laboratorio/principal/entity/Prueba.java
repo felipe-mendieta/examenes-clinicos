@@ -11,18 +11,31 @@ import java.util.Date;
 
 
 @Entity
-@Table(name = "area")
+@Table(name = "prueba")
 //Generar los metodos princiaples getters setters tostring stc
-@Data @AllArgsConstructor
-@NoArgsConstructor
-@Builder
-public class Area {
-
+@Data @AllArgsConstructor @NoArgsConstructor @Builder
+public class Prueba {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     @NotEmpty(message = "El nombre no debe ser vacío")
-    private String nombre;
+    private String titulo;
+
+
+    private Double precio;
+
+    private Float limiteInferior;
+
+    private Float limiteSuperior;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="idArea", referencedColumnName = "id")
+    private Area area;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="idUnidad", referencedColumnName = "id")
+    private UnidadMedida unidadMedida;
 
     private String status;
 

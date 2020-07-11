@@ -11,19 +11,29 @@ import java.util.Date;
 
 
 @Entity
-@Table(name = "area")
+@Table(name = "examen")
 //Generar los metodos princiaples getters setters tostring stc
 @Data @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Area {
-
+public class Examen {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @NotEmpty(message = "El nombre no debe ser vacío")
-    private String nombre;
+
+    private String nombreLaboratorista;
+
+    private Long idPaciente;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="idOrden", referencedColumnName = "id")
+    private Orden orden;
+
+    @Column(name = "create_at")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createAt;
 
     private String status;
+
 
 }
