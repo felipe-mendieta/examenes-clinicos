@@ -1,7 +1,6 @@
 package com.basededatos.laboratorio.principal.service;
 
 import com.basededatos.laboratorio.principal.entity.Orden;
-import com.basededatos.laboratorio.principal.repository.AreaRepository;
 import com.basededatos.laboratorio.principal.repository.OrdenRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -12,7 +11,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class OrdeServiceImpl implements OrdenService{
+public class OrdenServiceImpl implements OrdenService{
 
     private final OrdenRepository ordenRepository;
 

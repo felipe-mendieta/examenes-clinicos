@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "resultado")
@@ -30,6 +31,10 @@ public class Resultado {
     private Examen examen;
 
     private String valor;
+
+    @Column(name = "create_at")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createAt;
 
     private String status;
 

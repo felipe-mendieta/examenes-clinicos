@@ -37,6 +37,10 @@ public class Prueba {
     @JoinColumn(name="idUnidad", referencedColumnName = "id")
     private UnidadMedida unidadMedida;
 
+    @Column(name = "create_at")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createAt;
+
     private String status;
 
 }
