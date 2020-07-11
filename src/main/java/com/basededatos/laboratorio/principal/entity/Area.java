@@ -19,7 +19,8 @@ import java.util.Date;
 public class Area {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(columnDefinition = "serial")
     private Long id;
     @NotEmpty(message = "El nombre no debe ser vacío")
     private String nombre;

@@ -16,6 +16,6 @@ public interface OrdenService {
     public Orden deleteOrden(Long id);
 
     public List<Orden> findbyPaciente(String idPaciente);
-    public List<Orden> findbyMedicoSolicitante(String idPaciente);
-    public List<Orden> findbyCreated(Date fecha);
+    public Orden findbyPacienteLast(String idPaciente);
+    public Orden disposeOrden(Long id);
 }

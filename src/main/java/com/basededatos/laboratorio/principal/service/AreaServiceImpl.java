@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -27,6 +28,7 @@ public class AreaServiceImpl implements AreaService{
 
     @Override
     public Area createArea(Area area) {
+        area.setStatus("CREATED");
 
         return areaRepository.save(area);
     }
@@ -48,7 +50,7 @@ public class AreaServiceImpl implements AreaService{
         if (null == areaDB){
             return null;
         }
-        areaDB.setStatus("Borrado");
+        areaDB.setStatus("DELETED");
         return areaRepository.save(areaDB);
     }
 

@@ -1,5 +1,6 @@
 package com.basededatos.laboratorio.principal.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,7 +17,8 @@ import java.util.Date;
 @Data @AllArgsConstructor @NoArgsConstructor @Builder
 public class Prueba {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(columnDefinition = "serial")
     private Long id;
 
     @NotEmpty(message = "El nombre no debe ser vacío")
@@ -31,10 +33,12 @@ public class Prueba {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="idArea", referencedColumnName = "id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
     private Area area;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="idUnidad", referencedColumnName = "id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
     private UnidadMedida unidadMedida;
 
     @Column(name = "create_at")

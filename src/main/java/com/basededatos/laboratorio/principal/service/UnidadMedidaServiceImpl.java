@@ -1,5 +1,6 @@
 package com.basededatos.laboratorio.principal.service;
 
+import com.basededatos.laboratorio.principal.entity.Area;
 import com.basededatos.laboratorio.principal.entity.UnidadMedida;
 import com.basededatos.laboratorio.principal.repository.AreaRepository;
 import com.basededatos.laboratorio.principal.repository.UnidadMedidaRepository;
@@ -53,12 +54,14 @@ public class UnidadMedidaServiceImpl implements UnidadMedidaService{
     }
 
     @Override
-    public UnidadMedida findByName(String name) {
-        return null;
-    }
+    public UnidadMedida updateName(Long id, String nombreUnidad) {
 
-    @Override
-    public UnidadMedida updateName(Long id, String name) {
-        return null;
+        UnidadMedida unidadDeMedidaDB = getUnidadMedida(id);
+        if (null == unidadDeMedidaDB){
+            return null;
+        }
+        unidadDeMedidaDB.setUnidadDeMedida(nombreUnidad);
+        return unidadMedidaRepository.save(unidadDeMedidaDB);
+
     }
 }

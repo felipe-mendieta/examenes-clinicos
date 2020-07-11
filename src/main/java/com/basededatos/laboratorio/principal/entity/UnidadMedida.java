@@ -15,7 +15,10 @@ import java.util.Date;
 @Data @AllArgsConstructor @NoArgsConstructor @Builder
 public class UnidadMedida {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(columnDefinition = "serial")
     private Long id;
+
     @NotEmpty(message = "La unidad de medida no debe ser vacía.")
     private String unidadDeMedida;
 

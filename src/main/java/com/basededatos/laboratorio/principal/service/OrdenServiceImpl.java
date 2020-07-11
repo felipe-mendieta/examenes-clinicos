@@ -1,6 +1,7 @@
 package com.basededatos.laboratorio.principal.service;
 
 import com.basededatos.laboratorio.principal.entity.Orden;
+import com.basededatos.laboratorio.principal.entity.UnidadMedida;
 import com.basededatos.laboratorio.principal.repository.OrdenRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -29,31 +30,55 @@ public class OrdenServiceImpl implements OrdenService{
 
     @Override
     public Orden createOrden(Orden orden) {
+        orden.setStatus("CREATED");
+        orden.setCreateAt(new java.util.Date());
         return ordenRepository.save(orden);
     }
 
     @Override
     public Orden updateOrden(Orden orden) {
-        return null;
+
+        Orden ordenDB = getOrden(orden.getId());
+        if (null == ordenDB){
+            return null;
+        }
+
+        ordenDB.setMedicoSolicitante(orden.getMedicoSolicitante());
+        return ordenRepository.save(ordenDB);
+
     }
 
     @Override
     public Orden deleteOrden(Long id) {
-        return null;
+        Orden ordenDB = getOrden(id);
+        if (null == ordenDB){
+            return null;
+        }
+        ordenDB.setStatus("DELETED");
+        return ordenRepository.save(ordenDB);
     }
 
     @Override
     public List<Orden> findbyPaciente(String idPaciente) {
-        return null;
+
+        return ordenRepository.findByIdPaciente(idPaciente);
     }
 
     @Override
-    public List<Orden> findbyMedicoSolicitante(String idPaciente) {
-        return null;
+    public Orden findbyPacienteLast(String idPaciente) {
+        return ordenRepository.findAllByIdPacienteLast(idPaciente);
     }
 
+
     @Override
-    public List<Orden> findbyCreated(Date fecha) {
-        return null;
+    public Orden disposeOrden(Long idOrden) {
+        Orden ordenDB = getOrden(idOrden);
+        if (null == ordenDB){
+            return null;
+        }
+        ordenDB.setStatus("USED");
+        return ordenRepository.save(ordenDB);
+
     }
+
 }

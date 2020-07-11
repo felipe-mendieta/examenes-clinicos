@@ -18,7 +18,8 @@ import java.util.Date;
 @Builder
 public class Examen {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(columnDefinition = "serial")
     private Long id;
 
     private String nombreLaboratorista;

@@ -18,7 +18,8 @@ import java.util.Date;
 @Builder
 public class Orden {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(columnDefinition = "serial")
     private Long id;
 
     @NotEmpty(message = "El paciente no debe ser vacío")

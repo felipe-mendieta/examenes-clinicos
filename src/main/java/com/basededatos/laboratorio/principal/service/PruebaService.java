@@ -13,12 +13,12 @@ public interface PruebaService {
 
     public Prueba getPrueba(Long id);
 
-    public Prueba createPrueba(Prueba Prueba);
-    public Prueba updatePrueba(Prueba Prueba);
+    public Prueba createPrueba(Prueba prueba);
+    public Prueba updatePrueba(Prueba prueba);
     public Prueba deletePrueba(Long id);
 
     public List<Prueba> findbyArea(Area area);
-    public List<Prueba> findbyTitulo(Area area);
+    public List<Prueba> findbyTitulo(String titulo);
 
 
 }

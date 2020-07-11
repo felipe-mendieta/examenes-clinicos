@@ -14,8 +14,7 @@ public interface UnidadMedidaService {
     public UnidadMedida updateUnidadMedida(UnidadMedida unidadMedida);
     public UnidadMedida deleteUnidadMedida(Long id);
 
-    public UnidadMedida findByName(String name);
-    public UnidadMedida updateName(Long id, String name);
+    public UnidadMedida updateName(Long id, String nombre);
 
 
 }
