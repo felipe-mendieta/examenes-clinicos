@@ -1,11 +1,9 @@
 package com.basededatos.laboratorio.principal.service;
 
-import com.basededatos.laboratorio.principal.entity.Orden;
-import com.basededatos.laboratorio.principal.entity.OrdenPrueba;
-import com.basededatos.laboratorio.principal.entity.Prueba;
-import com.basededatos.laboratorio.principal.entity.Resultado;
+import com.basededatos.laboratorio.principal.entity.*;
 import com.basededatos.laboratorio.principal.repository.OrdenPruebaRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,6 +13,12 @@ import java.util.List;
 public class OrdenPruebaServiceImplementation implements OrdenPruebaService{
 
     private final OrdenPruebaRepository ordenPruebaRepository;
+
+    @Autowired
+    OrdenService ordenService;
+
+    @Autowired
+    PruebaService pruebaService;
 
 
     @Override
@@ -47,6 +51,7 @@ public class OrdenPruebaServiceImplementation implements OrdenPruebaService{
     @Override
     public OrdenPrueba createOrdenPrueba(OrdenPrueba ordenPrueba) {
         ordenPrueba.setStatus("CREATED");
+
         return ordenPruebaRepository.save(ordenPrueba);
 
     }
@@ -60,5 +65,8 @@ public class OrdenPruebaServiceImplementation implements OrdenPruebaService{
         }
         return ordenPruebaRepository.save(ordenPruebaDB);
     }
+
+
+
 
 }

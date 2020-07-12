@@ -1,6 +1,7 @@
 package com.basededatos.laboratorio.principal.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,18 +18,21 @@ import java.util.Date;
 @Builder
 public class Resultado {
 
-    @EmbeddedId
-    private ResultadoId resultado;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(columnDefinition = "serial")
+    private Long id;
 
-
-
-    @OneToOne( fetch = FetchType.LAZY)
-    @JoinColumn(name="idPrueba", referencedColumnName = "id", insertable=false, updatable=false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="idPrueba", referencedColumnName = "id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
     private Prueba prueba;
 
-    @OneToOne( fetch = FetchType.LAZY)
-    @JoinColumn(name="idExamen", referencedColumnName = "id", insertable=false, updatable=false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="idExamen", referencedColumnName = "id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
     private Examen examen;
+
 
     private String valor;
 

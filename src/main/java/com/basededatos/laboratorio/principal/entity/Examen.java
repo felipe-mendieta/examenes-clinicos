@@ -1,5 +1,6 @@
 package com.basededatos.laboratorio.principal.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -24,10 +25,11 @@ public class Examen {
 
     private String nombreLaboratorista;
 
-    private Long idPaciente;
+    private String idPaciente;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="idOrden", referencedColumnName = "id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
     private Orden orden;
 
     @Column(name = "create_at")

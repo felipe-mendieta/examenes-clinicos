@@ -20,4 +20,7 @@ public interface ExamenService {
 
     public Examen findbyOrden(Orden orden);
 
+    public List<Examen> findbyIdPaciente(String idPaciente);
+
+
 }

@@ -53,4 +53,13 @@ public class AreaController {
         Area areaCreate=areaService.createArea(area);
         return ResponseEntity.status(HttpStatus.CREATED).body(areaCreate);
     }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Area> deleteOrden(@PathVariable("id") Long id){
+        Area areaDelete = areaService.deleteArea(id);
+        if (areaDelete == null){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(areaDelete);
+    }
 }

@@ -45,6 +45,7 @@ public class ResultadoServiceImpl implements ResultadoService {
     @Override
     public Resultado createResultado(Resultado resultado) {
         resultado.setStatus("CREATED");
+        resultado.setCreateAt(new java.util.Date());
         return resultadoRepository.save(resultado);
     }
 

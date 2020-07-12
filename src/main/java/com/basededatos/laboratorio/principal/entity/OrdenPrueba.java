@@ -1,6 +1,7 @@
 package com.basededatos.laboratorio.principal.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,22 +20,22 @@ import java.util.Date;
 @NoArgsConstructor
 @Builder
 public class OrdenPrueba {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(columnDefinition = "serial")
+    private Long id;
 
-    @EmbeddedId //Definir clave principal compuesta con atributos de ordenPruebaId
-    private OrdenPruebaId ordenPruebaId;
-
-    private String status;
-
-    @OneToOne( fetch = FetchType.LAZY)
-    @JoinColumn(name="idPrueba", referencedColumnName = "id", insertable=false, updatable=false)
-    private Prueba prueba;
-
-    @ManyToOne( fetch = FetchType.LAZY)
-    @JoinColumn(name="idOrden", referencedColumnName = "id", insertable=false, updatable=false)
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="idOrden", referencedColumnName = "id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
     private Orden orden;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="idPrueba", referencedColumnName = "id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
+    private Prueba prueba;
 
-
+    private String status;
 }
 
 

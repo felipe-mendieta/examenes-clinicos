@@ -1,4 +1,5 @@
 package com.basededatos.laboratorio.principal.controller;
+import com.basededatos.laboratorio.principal.entity.Orden;
 import com.basededatos.laboratorio.principal.entity.Prueba;
 
 import com.basededatos.laboratorio.principal.service.PruebaService;
@@ -61,5 +62,14 @@ public class PruebaController {
     public ResponseEntity<Prueba> createPrueba(@RequestBody Prueba prueba){
         Prueba pruebaCreate=pruebaService.createPrueba(prueba);
         return ResponseEntity.status(HttpStatus.CREATED).body(pruebaCreate);
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Prueba> deletePrueba(@PathVariable("id") Long id){
+        Prueba pruebaDelete = pruebaService.deletePrueba(id);
+        if (pruebaDelete == null){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(pruebaDelete);
     }
 }

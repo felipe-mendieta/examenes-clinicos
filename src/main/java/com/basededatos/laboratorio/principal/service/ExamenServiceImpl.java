@@ -5,9 +5,15 @@ import com.basededatos.laboratorio.principal.entity.Examen;
 import com.basededatos.laboratorio.principal.entity.Orden;
 import com.basededatos.laboratorio.principal.repository.ExamenRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.sql.Date;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -42,8 +48,14 @@ public class ExamenServiceImpl implements ExamenService{
     }
 
     @Override
+    public List<Examen> findbyIdPaciente(String idPaciente) {
+        return examenRepository.findByIdPaciente(idPaciente);
+    }
+
+    @Override
     public Examen createExamen(Examen examen) {
         examen.setStatus("CREATED");
+        examen.setCreateAt(new java.util.Date());
         return examenRepository.save(examen);
     }
 
@@ -70,6 +82,7 @@ public class ExamenServiceImpl implements ExamenService{
 
         return examenRepository.save(examenDB);
     }
+
 
 
 

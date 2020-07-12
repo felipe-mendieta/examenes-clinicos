@@ -15,6 +15,8 @@ public interface OrdenPruebaService {
     public List<OrdenPrueba> getOrdenPruebaOrdenId(Long idOrden);
 
     public OrdenPrueba createOrdenPrueba(OrdenPrueba ordenPrueba);
+
     public OrdenPrueba deleteOrdenPrueba(Long idOrden, Long idPrueba);
+
 
 }

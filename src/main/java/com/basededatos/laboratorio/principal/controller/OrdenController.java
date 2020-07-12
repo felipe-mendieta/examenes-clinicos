@@ -1,6 +1,7 @@
 package com.basededatos.laboratorio.principal.controller;
 
 import com.basededatos.laboratorio.principal.entity.Area;
+import com.basededatos.laboratorio.principal.entity.Examen;
 import com.basededatos.laboratorio.principal.entity.Orden;
 import com.basededatos.laboratorio.principal.entity.Prueba;
 import com.basededatos.laboratorio.principal.service.OrdenService;
@@ -37,7 +38,7 @@ public class OrdenController {
         return ResponseEntity.ok(ordenes);
     }
 
-    @GetMapping(value = "/{id}")
+    @GetMapping(value = "/{orden}")
     public ResponseEntity<Orden> getOrden(@PathVariable("id") Long id){
         Orden orden= ordenService.getOrden(id);
         if(null==orden){
@@ -50,5 +51,14 @@ public class OrdenController {
     public ResponseEntity<Orden> createOrden(@RequestBody Orden orden){
         Orden ordenCreate=ordenService.createOrden(orden);
         return ResponseEntity.status(HttpStatus.CREATED).body(ordenCreate);
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Orden> deleteOrden(@PathVariable("id") Long id){
+        Orden ordenDelete = ordenService.deleteOrden(id);
+        if (ordenDelete == null){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(ordenDelete);
     }
 }
