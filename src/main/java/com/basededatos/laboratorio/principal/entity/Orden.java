@@ -23,7 +23,7 @@ public class Orden {
     private Long id;
 
     @NotEmpty(message = "El paciente no debe ser vacío")
-    private Long idPaciente;
+    private String idPaciente;
 
     private String medicoSolicitante;
 

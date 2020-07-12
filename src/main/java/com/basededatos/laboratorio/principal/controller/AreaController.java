@@ -26,26 +26,8 @@ public class AreaController {
         return ResponseEntity.ok(areas);
     }
 
-    @GetMapping
-    public ResponseEntity<List<Product>> listProduct(@RequestParam(name = "categoryId", required = false) Long categoryId){
-        List<Product> products = new ArrayList<>();
-        if (null ==  categoryId){
-            products = productService.listAllProduct();
-            if (products.isEmpty()){
-                return ResponseEntity.noContent().build();
-            }
-        }else{
-            products = productService.findByCategory(Category.builder().id(categoryId).build());
-            if (products.isEmpty()){
-                return ResponseEntity.notFound().build();
-            }
-        }
 
 
-        return ResponseEntity.ok(products);
-    }
-
-    /productos/1
     @GetMapping(value = "/{id}")
     public ResponseEntity<Area> getArea(@PathVariable("id") Long id){
         Area area= areaService.getArea(id);
@@ -56,9 +38,8 @@ public class AreaController {
     }
 
 
-
-    @GetMapping()
-    public ResponseEntity<Area> getAreaby(@RequestParam(name = "categoryId", required = false) Long categoryId){
+    @GetMapping(value = "/nombre/{nombre}")
+    public ResponseEntity<Area> getAreaByNombre(@PathVariable("nombre") String nombre){
         Area area= areaService.findByNombre(nombre);
         if(null==area){
             return ResponseEntity.noContent().build();

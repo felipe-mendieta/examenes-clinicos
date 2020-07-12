@@ -19,7 +19,7 @@ public interface ResultadoRepository extends JpaRepository<Resultado, ResultadoI
 
 
     //Busqueda de Todos resultados por id del examen
-    @Query(value="select res from Resultado res where res.idExamen=?1 order by create_at desc", nativeQuery = true)
+    @Query(value="select * from Resultado res where res.idExamen=?1 order by create_at desc", nativeQuery = true)
     public List<Resultado> findByidExamen(Long idExamen);
 
     //Busqueda resultado mediante entidades
@@ -27,7 +27,7 @@ public interface ResultadoRepository extends JpaRepository<Resultado, ResultadoI
 
 
     //Busqueda resultado mediante ids de examen y prueba
-    @Query(value="select res from Resultado res where res.idExamen=?1 and res.idPrueba=?2 order by create_at desc", nativeQuery = true)
+    @Query(value="select * from Resultado res where res.idExamen=?1 and res.idPrueba=?2 order by create_at desc", nativeQuery = true)
     public Resultado findByIds(Long idExamen, Long idPrueba);
 
 

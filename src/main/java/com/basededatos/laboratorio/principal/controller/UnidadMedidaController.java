@@ -26,6 +26,16 @@ public class UnidadMedidaController {
         return ResponseEntity.ok(unidadMedidas);
     }
 
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<UnidadMedida> getArea(@PathVariable("id") Long id){
+        UnidadMedida unidadMedidas= unidadMedidaService.getUnidadMedida(id);
+        if(null==unidadMedidas){
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(unidadMedidas);
+    }
+
+
     @PostMapping
     public ResponseEntity<UnidadMedida> createUnidad(@RequestBody UnidadMedida unidad){
         UnidadMedida unidadCeate=unidadMedidaService.createUnidadMedida(unidad);

@@ -58,13 +58,13 @@ public class PruebaServiceImpl implements PruebaService{
     }
 
     @Override
-    public List<Prueba> findbyArea(Area area) {
+    public List<Prueba> findbyArea(Long idArea) {
 
-        return pruebaRepository.findByArea(area);
+        return pruebaRepository.findByIdArea(idArea);
     }
 
     @Override
     public List<Prueba> findbyTitulo(String titulo) {
-        return pruebaRepository.findByTituloContaining(titulo);
+        return pruebaRepository.findByTitulo(titulo);
     }
 }

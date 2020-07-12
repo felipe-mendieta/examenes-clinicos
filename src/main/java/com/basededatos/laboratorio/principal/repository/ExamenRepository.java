@@ -17,7 +17,7 @@ public interface ExamenRepository  extends JpaRepository<Examen, Long> {
     public List<Examen> findByIdPaciente(String idPaciente);
 
     //Busqueda de ultimo examen realizado mediante cedula del paciente
-    @Query(value="select exa from examen exa where exa.idPaciente=?1 order by create_at desc limit 1", nativeQuery = true)
+    @Query(value="select * from examen exa where exa.idPaciente=?1 order by create_at desc limit 1", nativeQuery = true)
     public Examen findAllByIdPacienteLast(String idPaciente);
 
     //Busqueda mediante la orden que creo el examen

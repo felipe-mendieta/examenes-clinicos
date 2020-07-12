@@ -17,7 +17,7 @@ public interface PruebaService {
     public Prueba updatePrueba(Prueba prueba);
     public Prueba deletePrueba(Long id);
 
-    public List<Prueba> findbyArea(Area area);
+    public List<Prueba> findbyArea(Long idArea);
     public List<Prueba> findbyTitulo(String titulo);
 
 

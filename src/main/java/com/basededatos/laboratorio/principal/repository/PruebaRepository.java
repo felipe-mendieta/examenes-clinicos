@@ -6,16 +6,16 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.hibernate.dialect.PostgreSQL10Dialect;
 
 import java.util.List;
 
 @Repository
 public interface PruebaRepository extends JpaRepository<Prueba, Long> {
 
-    public List<Prueba> findByArea(Area area);
+    @Query(value = "select * from prueba pru where pru.id_area=?1", nativeQuery = true)
+    public List<Prueba> findByIdArea(Long idArea);
 
-    @Query(value = "select pru from prueba pru where pru.titulo like '%keyword%'", nativeQuery = true)
+    @Query(value = "SELECT * FROM prueba pru WHERE LOWER(pru.titulo) ILIKE LOWER('%blancos%')", nativeQuery = true)
     public List<Prueba> findByTitulo(@Param("keyword") String titulo);
-
-    public List<Prueba> findByTituloContaining(String titulo);
 }

@@ -61,7 +61,7 @@ public class OrdenServiceImpl implements OrdenService{
     @Override
     public List<Orden> findbyPaciente(String idPaciente) {
 
-        return ordenRepository.findByIdPaciente(idPaciente);
+        return ordenRepository.findByIdPacienteOrderByCreateAtDesc(idPaciente);
     }
 
     @Override

@@ -12,13 +12,13 @@ public interface OrdenPruebaRepository extends JpaRepository<OrdenPrueba, Long> 
 
     //public List<OrdenPrueba> findByOrden(Orden orden);
 
-    @Query(value="select ord from orden_prueba ord where ord.idOrden=?1 order by create_at desc", nativeQuery = true)
+    @Query(value="select * from orden_prueba ord where ord.idOrden=?1 order by create_at desc", nativeQuery = true)
     public List<OrdenPrueba> findByidOrden(Long idOrden);
 
 
     //public OrdenPrueba findByOrdenAAndPrueba(Orden orden, Prueba prueba);
 
-    @Query(value="select ord from orden_prueba ord where ord.idOrden=?1 and ord.idPrueba=?2 order by create_at desc", nativeQuery = true)
+    @Query(value="select * from orden_prueba ord where ord.idOrden=?1 and ord.idPrueba=?2 order by create_at desc", nativeQuery = true)
     public OrdenPrueba findByIds(Long idOrden, Long idPrueba);
 
 

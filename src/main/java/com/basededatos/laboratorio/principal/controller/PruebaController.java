@@ -1,14 +1,13 @@
 package com.basededatos.laboratorio.principal.controller;
-
-import com.basededatos.laboratorio.principal.entity.Area;
 import com.basededatos.laboratorio.principal.entity.Prueba;
-import com.basededatos.laboratorio.principal.service.AreaService;
+
 import com.basededatos.laboratorio.principal.service.PruebaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -19,13 +18,43 @@ public class PruebaController {
     private PruebaService pruebaService;
 
     @GetMapping()
-    public ResponseEntity<List<Prueba>> listPrueba(){
-        List<Prueba> pruebas= pruebaService.listAllPrueba();
+    public ResponseEntity<List<Prueba>> listPrueba(@RequestParam(name = "titulo", required = false) String titulo){
+        List<Prueba> pruebas = new ArrayList<>();
+        System.out.println(titulo);
+        if(null==titulo){
+            pruebas=pruebaService.listAllPrueba();
+            if(pruebas.isEmpty()){
+                return ResponseEntity.noContent().build();
+            }
 
-        if(pruebas.isEmpty()){
+        }else{
+            pruebas=pruebaService.findbyTitulo(titulo);
+            if(pruebas.isEmpty()){
+                return ResponseEntity.notFound().build();
+            }
+        }
+
+
+        return ResponseEntity.ok(pruebas);
+    }
+
+
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<Prueba> getPrueba(@PathVariable("id") Long id){
+        Prueba prueba= pruebaService.getPrueba(id);
+        if(null==prueba){
             return ResponseEntity.noContent().build();
         }
-        return ResponseEntity.ok(pruebas);
+        return ResponseEntity.ok(prueba);
+    }
+
+    @GetMapping(value = "/area/{id}")
+    public ResponseEntity<List<Prueba>> getPruebaArea(@PathVariable("id") Long idArea){
+        List<Prueba> prueba= pruebaService.findbyArea(idArea);
+        if(null==prueba){
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(prueba);
     }
 
     @PostMapping
