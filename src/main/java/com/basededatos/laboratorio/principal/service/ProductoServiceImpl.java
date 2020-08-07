@@ -25,5 +25,10 @@ public class ProductoServiceImpl implements ProductoService{
         return (List<Producto>) productoRepository.findAllByIdCategorias();
     }
 
+    @Override
+    public String findMultimedia(Long id) {
+        return productoRepository.findMultimedia(id);
+    }
+
 
 }

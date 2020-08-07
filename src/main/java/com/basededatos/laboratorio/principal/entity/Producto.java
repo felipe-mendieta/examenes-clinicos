@@ -21,5 +21,10 @@ public class Producto {
     @Column(columnDefinition = "serial")
     private Integer id;
 
+    private String titulo;
+    private String descripcion;
+    private String portada;
+    private String multimedia;
+
 
 }

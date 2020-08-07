@@ -10,4 +10,6 @@ public interface ProductoService {
 
     public List<Producto> findbyCategorias();
 
+    public String findMultimedia(Long id);
+
 }
