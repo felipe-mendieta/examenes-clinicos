@@ -1,12 +1,13 @@
 spring:
   jpa:
-    database: POSTGRESQL
+    database: MYSQL
     show-sql: true
     hibernate:
       ddl-auto: update
   datasource:
-    platform: postgres
-    url: jdbc:postgresql://localhost:5432/health
-    username: postgres
-    password: 1234
-    driverClassName: org.postgresql.Driver
+    platform: mysql
+    url: jdbc:mysql://sql10.freemysqlhosting.net:5432/sql10358515
+    username: sql10358515
+    password: lCJ7H7Pppm
+    driverClassName: com.mysql.cj.jdbc.NonRegisteringDriver
+
