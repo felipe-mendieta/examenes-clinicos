@@ -1,6 +1,3 @@
-server:
-  port : 8081  
-    
 spring:
   jpa:
     database: MYSQL
@@ -9,9 +6,8 @@ spring:
       ddl-auto: update
   datasource:
     platform: mysql
-    url: jdbc:mysql://localhost:3306/ecommerce
-    username: root
-    password: 
+    url: jdbc:mysql://sql10.freemysqlhosting.net:3306/sql10358515
+    username: sql10358515
+    password: lCJ7H7Pppm
     driverClassName: com.mysql.cj.jdbc.NonRegisteringDriver
 
-    
